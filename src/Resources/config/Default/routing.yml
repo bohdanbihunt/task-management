@@ -1,0 +1,3 @@
+default_front:
+    resource: "Resources/config/Default/routing/front.yml"
+    prefix:   /

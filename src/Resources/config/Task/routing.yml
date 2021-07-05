@@ -1,0 +1,3 @@
+task_front:
+    resource: "Resources/config/Task/routing/front.yml"
+    prefix:   /task

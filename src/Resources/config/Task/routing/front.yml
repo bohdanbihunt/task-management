@@ -1,0 +1,23 @@
+task_index:
+    path:  /
+    controller: App\Controller\TaskController::index
+    
+task_new:
+    path:  /new
+    controller: App\Controller\TaskController::new
+    
+task_edit:
+    path:  /edit/{id}
+    controller: App\Controller\TaskController::edit
+    requirements:
+        id: '\d+'
+        
+task_show:
+    path:  /show/{id}
+    controller: App\Controller\TaskController::show
+    requirements:
+        id: '\d+'
+        
+task_change_status:
+    path:  /change-status/{id}
+    controller: App\Controller\TaskController::changeStatus

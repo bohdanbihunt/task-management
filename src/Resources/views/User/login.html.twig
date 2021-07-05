@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Task management - Login{% endblock %}
+
+{% block page_class %}login{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <form class="col-4 p-5" action="{{ path('user_login') }}" method="post">
+                <h1>Login</h1>
+
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{ flashMessage }}</strong>
+                    </div>
+                {% endfor %}
+                
+                <div class="panel-body mb-4">
+                    {% if error %}
+                        <div class="alert alert-danger alert-error">
+                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                        </div>
+                    {% endif %}
+
+                    <div class="mb-3">
+                        <label class="form-label" for="username">Username</label>
+                        <input class="form-control" id="username" type="text" name="_username" value="{{ last_username }}"/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="password">Password</label>
+                        <input class="form-control" id="password" type="password" name="_password"/>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit">Submit</button>
+
+                    <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}"/>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                </div>
+
+                <a href="{{ path('user_registration') }}">Registration</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

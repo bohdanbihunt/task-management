@@ -1,0 +1,8 @@
+default:
+    resource: "Resources/config/Default/routing.yml"
+    
+task:
+    resource: "Resources/config/Task/routing.yml"
+    
+user:
+    resource: "Resources/config/User/routing.yml"

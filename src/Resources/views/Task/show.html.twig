@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block page_class %}task-show{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">{{ entity.title }}</h5>
+                    <h6 class="card-subtitle mb-3 text-muted">Due date - {{ entity.deadline|date('Y-M-d') }}</h6>
+                    
+                    <div class="mb-2">
+                        <span class="card-subtitle text-muted">Status - <strong>{{ entity.getStatusList[entity.status] }}</strong></span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <span class="card-subtitle text-muted">Assignee - <strong>{{ entity.user.username }}</strong></span>
+                    </div>
+                    
+                    <p class="card-text">{{ entity.description }}</p>
+                    <a href="{{ path('task_edit', {'id': entity.id}) }}" class="card-link">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

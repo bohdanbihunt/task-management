@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block page_class %}task-index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <ul class="nav justify-content-end">
+                <li class="nav-item mt-5 mb-5">
+                    <a class="nav-link" href="{{ path('task_new') }}" type="button">Add task</a>
+                </li>
+            </ul>
+                
+            <div id="work-table" class="work-table d-flex justify-content-between align-items-center">
+                <div class="work-column">
+                    <div class="work-column-title mb-4">
+                        <h5>Pending</h5>
+                    </div>
+                    
+                    <div id="pending" class="work-column-drop" data-status="0">
+                        {% if pendingEntities is defined %}
+                            {% if pendingEntities|length > 0 %}
+                                {% for entity in pendingEntities %}
+                                    <div class="card mb-4" data-action="{{ path('task_change_status', {'id': entity.id}) }}">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ entity.title }}</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">Due date - {{ entity.deadline|date('Y-M-d') }}</h6>
+                                            <p class="card-text">Assignee - {{ entity.user.username }}</p>
+                                            <a href="{{ path('task_show', {'id': entity.id}) }}" class="card-link">Show</a>
+                                            <a href="{{ path('task_edit', {'id': entity.id}) }}" class="card-link">Edit</a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+                    
+                <div class="work-column">
+                    <div class="work-column-title mb-4">
+                        <h5>Done</h5>
+                    </div>
+
+                    <div id="done" class="work-column-drop" data-status="1">
+                        {% if doneEntities is defined %}
+                            {% if doneEntities|length > 0 %}
+                                {% for entity in doneEntities %}
+                                    <div class="card mb-4" data-action="{{ path('task_change_status', {'id': entity.id}) }}">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ entity.title }}</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">Due date - {{ entity.deadline|date('Y-M-d') }}</h6>
+                                            <p class="card-text">Assignee - {{ entity.user.username }}</p>
+                                            <a href="{{ path('task_show', {'id': entity.id}) }}" class="card-link">Show</a>
+                                            <a href="{{ path('task_edit', {'id': entity.id}) }}" class="card-link">Edit</a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+                    
+                <div class="work-column">
+                    <div class="work-column-title mb-4">
+                        <h5>Rejected</h5>
+                    </div>
+                    
+                    <div id="rejected" class="work-column-drop" data-status="2">
+                        {% if rejectedEntities is defined %}
+                            {% if rejectedEntities|length > 0 %}
+                                {% for entity in rejectedEntities %}
+                                    <div class="card mb-4" data-action="{{ path('task_change_status', {'id': entity.id}) }}">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ entity.title }}</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">Due date - {{ entity.deadline|date('Y-M-d') }}</h6>
+                                            <p class="card-text">Assignee - {{ entity.user.username }}</p>
+                                            <a href="{{ path('task_show', {'id': entity.id}) }}" class="card-link">Show</a>
+                                            <a href="{{ path('task_edit', {'id': entity.id}) }}" class="card-link">Edit</a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

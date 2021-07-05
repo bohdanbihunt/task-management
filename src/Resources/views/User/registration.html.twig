@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Task management - Registration{% endblock %}
+
+{% block page_class %}registration{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            {{ form_start(form, {'attr': {'id': form.vars.name, 'class': 'col-4 p-5' }}) }}
+                <h1>Registration</h1>
+
+                <div class="panel-body mb-4">
+                    <div class="mb-3">
+                        {{ form_row(form.username, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form_row(form.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    
+                    {{ form_row(form.submit, {'attr': {'class': 'btn btn-primary' }}) }}
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

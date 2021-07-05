@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}Task management{% endblock %}</title>
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        {% block stylesheets %}
+            <link href="{{ asset('assets/front/css/bootstrap.min.css') }}" rel="stylesheet" media="all" />
+            <link href="{{ asset('assets/front/css/style.css') }}" rel="stylesheet" media="all" />
+        {% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('assets/front/images/favicon.png') }}" />
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <a class="navbar-brand" href="{{ path('task_index') }}">Task management</a>
+                {% else %}
+                    <a class="navbar-brand" href="{{ path('homepage') }}">Task management</a>
+                {% endif %}
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="d-flex">
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                        <a class="btn btn-outline-light" href="{{ path('user_logout') }}">Logout</a>
+                    {% else %}
+                        <a class="btn btn-outline-light" href="{{ path('user_login') }}">Login</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+
+        {% block body %}{% endblock %}
+
+        {% block javascripts %}
+            <script src="{{ asset('assets/front/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('assets/front/js/Sortable.min.js') }}"></script>
+            <script src="{{ asset('assets/front/js/main.min.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

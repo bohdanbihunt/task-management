@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block page_class %}task-new{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            {{ form_start(form, {'attr': {'id': form.vars.name, 'class': 'col-4 p-5' }}) }}
+                <h1>Edit task</h1>
+
+                <div class="panel-body mb-4">
+                    <div class="mb-3">
+                        {{ form_row(form.title, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form_row(form.description, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form_row(form.deadline, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form_row(form.user, {'attr': {'class': 'form-select'}}) }}
+                    </div>
+                    
+                    {{ form_row(form.submit, {'attr': {'class': 'btn btn-primary' }}) }}
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

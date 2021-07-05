@@ -1,0 +1,2 @@
+User_security:
+    resource: "Resources/config/User/routing/security.yml"
